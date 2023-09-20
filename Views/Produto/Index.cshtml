@@ -1,0 +1,43 @@
+﻿<div class="text-center">
+
+    @model IEnumerable<desafioIbid.Models.Produto>
+
+<h2>Produtos cadastrados</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in Model)
+        {
+            <tr>
+                <td>@produto.Id</td>
+                <td>@produto.Nome</td>
+                <td>@produto.Tipo</td>
+                <td>@produto.Preco</td>
+                <td>
+                    
+                    <a asp-action="Editar" asp-route-id="@produto.Id">Editar</a> |
+                    @* <a asp-action="Deletar" asp-route-id="@produto.Id">Deletar</a> *@
+                    <form asp-action="Deletar" asp-route-id="@produto.Id" method="post">
+                    <button type="submit">Deletar</button>
+</form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Criar">Cadastrar Produto</a>
+</p>
+
+</div>
